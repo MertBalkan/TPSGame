@@ -258,6 +258,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1c7d49b6-c63e-457d-b5f9-d01544c57cc5
     m_ActionName: OnFoot/Rotator[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 88636920}
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f96ea425-f864-4c7f-bdc6-614b02476501
+    m_ActionName: OnFoot/Attack[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: OnFoot
@@ -278,6 +293,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _turnSpeed: 10
   _turnTransform: {fileID: 1055879631}
+  _currentWeapon: {fileID: 1787221932}
 --- !u!1001 &393849474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -738,7 +754,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.044223808, y: -0.000000002148287, z: 1.03888245e-10, w: 0.99902165}
+  m_LocalRotation: {x: 0.044223808, y: -0.0000000021482867, z: 1.0388115e-10, w: 0.99902165}
   m_LocalPosition: {x: 0.81, y: 1.640316, z: -2.1808789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -837,7 +853,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999514944}
-  m_LocalRotation: {x: 0.044223808, y: -0.000000002148287, z: 1.03888245e-10, w: 0.99902165}
+  m_LocalRotation: {x: 0.044223808, y: -0.0000000021482867, z: 1.0388115e-10, w: 0.99902165}
   m_LocalPosition: {x: 0.81, y: 1.640316, z: -2.1808789}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -990,6 +1006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1787221931}
+  - component: {fileID: 1787221932}
   m_Layer: 0
   m_Name: Weapon1
   m_TagString: Untagged
@@ -1012,3 +1029,22 @@ Transform:
   m_Father: {fileID: 1327966312}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1787221932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787221930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dc0032cf109e494695c5083db2ee4a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canFire: 0
+  _maxAttackDelay: 0.25
+  _distance: 100
+  _camera: {fileID: 963194227}
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 1

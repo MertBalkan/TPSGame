@@ -15,6 +15,7 @@ namespace TPSGame.Concretes.Controllers
         [SerializeField] private float _turnSpeed = 10.0f;
 
         [SerializeField] private Transform _turnTransform;
+        [SerializeField] private WeaponController _currentWeapon;
 
         private IInputReader _input;
         private IMover _mover;
@@ -43,12 +44,16 @@ namespace TPSGame.Concretes.Controllers
 
             _xRotator.RotationAction(_input.Rotation.x, _turnSpeed);
             _yRotator.RotationAction(_input.Rotation.y, _turnSpeed);
+
+            if (_input.IsAttackButtonPressed)
+            {
+                _currentWeapon.Attack();
+            }
         }
 
         private void FixedUpdate()
         {
             _mover.MoveAction(_direction, _moveSpeed);
-
         }
 
         private void LateUpdate()
