@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TPSGame.Abstracts.Controllers;
 using TPSGame.Concretes.Controllers;
 using UnityEngine;
 
@@ -9,9 +10,9 @@ namespace TPSGame.Concretes.Animations
     {
         private Animator _animator;
         
-        public CharacterAnimation(PlayerController entity)
+        public CharacterAnimation(IEntityController entity)
         {
-            _animator = entity.GetComponentInChildren<Animator>();
+            _animator = entity.transform.GetComponentInChildren<Animator>();
         }
 
         public void MoveAnimation(float moveSpeed)
