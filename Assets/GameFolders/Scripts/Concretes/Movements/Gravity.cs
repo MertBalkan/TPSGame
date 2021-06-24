@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace TPSGame.Concretes.Movements
 {
+    [RequireComponent(typeof(CharacterController))]
     public class Gravity : MonoBehaviour
     {
         [SerializeField] private float _gravity = -9.81f;

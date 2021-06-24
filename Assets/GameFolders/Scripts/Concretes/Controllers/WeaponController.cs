@@ -31,10 +31,7 @@ namespace TPSGame.Concretes.Controllers
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, _distance, _layerMask))
-            {
-                Debug.Log(
-                hit.collider.gameObject.name);
-            }
+                Debug.Log( hit.collider.gameObject.name);
 
             _currentTime = 0f;
         }

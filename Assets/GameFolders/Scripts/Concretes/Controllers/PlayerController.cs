@@ -5,10 +5,11 @@ using TPSGame.Abstracts.Inputs;
 using TPSGame.Abstracts.Movements;
 using TPSGame.Concretes.Movements;
 using TPSGame.Concretes.Animations;
+using TPSGame.Abstracts.Controllers;
 
 namespace TPSGame.Concretes.Controllers
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IEntityController
     {
         [Header("Movement Informations")]
         [SerializeField] private float _moveSpeed = 10.0f;

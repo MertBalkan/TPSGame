@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TPSGame.Abstracts.Controllers;
 using TPSGame.Abstracts.Movements;
 using TPSGame.Concretes.Controllers;
 using UnityEngine;
@@ -10,9 +11,9 @@ namespace TPSGame.Concretes.Movements
     {
         private CharacterController _characterController;
 
-        public MoveWithCharacterController(PlayerController playerController)
+        public MoveWithCharacterController(IEntityController entityController)
         {
-            _characterController = playerController.GetComponent<CharacterController>();
+            _characterController = entityController.transform.GetComponent<CharacterController>();
         }
 
         public void MoveAction(Vector3 direction, float moveSpeed)
