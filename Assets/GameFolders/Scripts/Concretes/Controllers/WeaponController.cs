@@ -17,6 +17,7 @@ namespace TPSGame.Concretes.Controllers
         
         private float _currentTime = 0f;
 
+        public AttackScriptableObject AttackScriptableObject => _attackScriptableObject;
         private void Awake()
         {
             _attackType = _attackScriptableObject.GetAttackType(_transformObject); 

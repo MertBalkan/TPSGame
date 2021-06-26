@@ -14,27 +14,22 @@ namespace TPSGame.Concretes.Controllers
         [Header("Movement Informations")]
         [SerializeField] private float _moveSpeed = 10.0f;
         [SerializeField] private float _turnSpeed = 10.0f;
-
         [SerializeField] private Transform _turnTransform;
-        [SerializeField] private WeaponController _currentWeapon;
 
         private IInputReader _input;
         private IMover _mover;
         private IRotator _xRotator;
         private IRotator _yRotator;
-
         private CharacterAnimation _animation;
-
+        private InventoryController _inventory;
         private Vector3 _direction;
-
         public Transform TurnTransform => _turnTransform;
 
         private void Awake() {
             _input = GetComponent<IInputReader>();
-
             _mover = new MoveWithCharacterController(this);
-
             _animation = new CharacterAnimation(this);
+            _inventory = GetComponent<InventoryController>();
 
             _xRotator = new RotatorX(this);
             _yRotator = new RotatorY(this);
@@ -48,7 +43,11 @@ namespace TPSGame.Concretes.Controllers
 
             if (_input.IsAttackButtonPressed)
             {
-                _currentWeapon.Attack();
+                _inventory.CurrentWeapon.Attack();
+            }
+
+            if(_input.IsInventoryButtonPressed){
+                _inventory.ChangeWeapon();
             }
         }
 

@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "7c670494-f259-41bb-834a-82cd6ed31340",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap(duration=0.1,pressPoint=0.5)"
                 }
             ],
             "bindings": [
@@ -160,6 +168,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8fdcce66-9527-402d-b98d-cc9d1ecde6ec",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
