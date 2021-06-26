@@ -284,15 +284,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4420664804571618, guid: 8fc40ebf5a41b30428929f5ba3697759, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -0.099
       objectReference: {fileID: 0}
     - target: {fileID: 4420664804571618, guid: 8fc40ebf5a41b30428929f5ba3697759, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.202
       objectReference: {fileID: 0}
     - target: {fileID: 4420664804571618, guid: 8fc40ebf5a41b30428929f5ba3697759, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.4495
       objectReference: {fileID: 0}
     - target: {fileID: 4420664804571618, guid: 8fc40ebf5a41b30428929f5ba3697759, type: 3}
       propertyPath: m_LocalRotation.x
@@ -771,6 +771,12 @@ PrefabInstance:
       propertyPath: _currentWeapon
       value: 
       objectReference: {fileID: 1320650605}
+    - target: {fileID: 1396258236715434148, guid: 77e01f8dd37ed4a4f91c2e10f77e77b2,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: ee14c7b56afad0444bce5504cc6acf31,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77e01f8dd37ed4a4f91c2e10f77e77b2, type: 3}
 --- !u!1001 &5247287665689267809
