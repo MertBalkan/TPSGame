@@ -10,7 +10,6 @@ namespace TPSGame.Concretes.Controllers
     public class WeaponController : MonoBehaviour
     {
         [SerializeField] private bool _canFire;
-
         [SerializeField] private Transform _transformObject;
         [SerializeField] private AttackScriptableObject _attackScriptableObject;
 
@@ -20,7 +19,7 @@ namespace TPSGame.Concretes.Controllers
 
         private void Awake()
         {
-            _attackType = new RangeAttackType(_transformObject, _attackScriptableObject);    
+            _attackType = _attackScriptableObject.GetAttackType(_transformObject); 
         }
 
         private void Update()
