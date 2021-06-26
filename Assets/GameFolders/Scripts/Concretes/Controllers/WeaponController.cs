@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TPSGame.Abstracts.Combats;
+using TPSGame.Concretes.Combats;
+using TPSGame.Concretes.ScriptableObjects;
 using UnityEngine;
 
 namespace TPSGame.Concretes.Controllers
@@ -8,30 +11,29 @@ namespace TPSGame.Concretes.Controllers
     {
         [SerializeField] private bool _canFire;
 
-        [SerializeField] private float _maxAttackDelay = 0.25f;
-        [SerializeField] private float _distance = 100f;
+        [SerializeField] private Transform _transformObject;
+        [SerializeField] private AttackScriptableObject _attackScriptableObject;
 
-        [SerializeField] private Camera _camera;
-
-        [SerializeField] private LayerMask _layerMask;
-
+        private IAttackType _attackType;
+        
         private float _currentTime = 0f;
+
+        private void Awake()
+        {
+            _attackType = new RangeAttackType(_transformObject, _attackScriptableObject);    
+        }
 
         private void Update()
         {
             _currentTime += Time.deltaTime;
-            _canFire = _currentTime > _maxAttackDelay;
+            _canFire = _currentTime > _attackScriptableObject.MaxAttackDelay;
         }
 
         public void Attack()
         {
             if (!_canFire) return;
-            
-            Ray ray = _camera.ViewportPointToRay(Vector3.one / 2f);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, _distance, _layerMask))
-                Debug.Log( hit.collider.gameObject.name);
+            _attackType.AttackAction();
 
             _currentTime = 0f;
         }
