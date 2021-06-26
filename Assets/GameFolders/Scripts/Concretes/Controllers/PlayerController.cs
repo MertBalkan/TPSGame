@@ -25,7 +25,8 @@ namespace TPSGame.Concretes.Controllers
         private Vector3 _direction;
         public Transform TurnTransform => _turnTransform;
 
-        private void Awake() {
+        private void Awake()
+        {
             _input = GetComponent<IInputReader>();
             _mover = new MoveWithCharacterController(this);
             _animation = new CharacterAnimation(this);
@@ -35,7 +36,8 @@ namespace TPSGame.Concretes.Controllers
             _yRotator = new RotatorY(this);
         }
 
-        private void Update() {
+        private void Update()
+        {
             _direction = _input.Direction;
 
             _xRotator.RotationAction(_input.Rotation.x, _turnSpeed);
@@ -46,7 +48,8 @@ namespace TPSGame.Concretes.Controllers
                 _inventory.CurrentWeapon.Attack();
             }
 
-            if(_input.IsInventoryButtonPressed){
+            if (_input.IsInventoryButtonPressed)
+            {
                 _inventory.ChangeWeapon();
             }
         }
