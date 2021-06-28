@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MeleeAttackHand
   m_EditorClassIdentifier: 
   _attackType: 1
-  _distance: 0.25
+  _distance: 0.3
   _damage: 1
   _layerMask:
     serializedVersion: 2

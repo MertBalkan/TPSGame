@@ -108,7 +108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1396258234744856047
 Transform:
   m_ObjectHideFlags: 0
@@ -787,7 +787,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1396258236602054578}
-  - component: {fileID: 1396258236602054577}
   - component: {fileID: 1396258236602054579}
   - component: {fileID: 1396258236602054590}
   - component: {fileID: 1396258236602054589}
@@ -820,20 +819,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1396258236602054577
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1396258236602054576}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.15621065
-  m_Height: 1.8317225
-  m_Direction: 1
-  m_Center: {x: -0.005673602, y: 0.89097345, z: 0}
 --- !u!143 &1396258236602054579
 CharacterController:
   m_ObjectHideFlags: 0
@@ -867,7 +852,6 @@ MonoBehaviour:
   _moveSpeed: 5
   _turnSpeed: 10
   _turnTransform: {fileID: 1396258236155820939}
-  _currentWeapon: {fileID: 1320650605}
 --- !u!114 &1396258236602054589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,6 +923,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f96ea425-f864-4c7f-bdc6-614b02476501
     m_ActionName: OnFoot/Attack[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1396258236602054588}
+        m_MethodName: OnInventoryPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7c670494-f259-41bb-834a-82cd6ed31340
+    m_ActionName: OnFoot/Inventory[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: OnFoot
@@ -995,6 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 562f36e9e52474a4cb120c63ffdbc3cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weapons: []
 --- !u!1 &1396258236657728103
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,7 +1135,7 @@ Animator:
   m_GameObject: {fileID: 6935944067861167678}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 634d1180462d29d45809a9e8ed98e097, type: 3}
-  m_Controller: {fileID: 22100000, guid: ee14c7b56afad0444bce5504cc6acf31, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ea244ecd80de564faa09b00543c1cbb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1214,12 +1214,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: -5716681864270162303, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 320b1c2af77554f99a1658df4a6d3d5c, type: 3}
---- !u!4 &1978736378519489077 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 582480816384568578, guid: 320b1c2af77554f99a1658df4a6d3d5c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1396258235888494391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6204330506503408685 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 320b1c2af77554f99a1658df4a6d3d5c,
@@ -1229,6 +1223,12 @@ Transform:
 --- !u!1 &6935944067861167678 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 320b1c2af77554f99a1658df4a6d3d5c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1396258235888494391}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1978736378519489077 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 582480816384568578, guid: 320b1c2af77554f99a1658df4a6d3d5c,
     type: 3}
   m_PrefabInstance: {fileID: 1396258235888494391}
   m_PrefabAsset: {fileID: 0}
