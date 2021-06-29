@@ -11,42 +11,42 @@ using UnityEngine.AI;
 
 namespace TPSGame.Concretes.Controllers
 {
-    public class EnemyController : MonoBehaviour, IEntityController
+    public class EnemyController : MonoBehaviour, IEnemyController
     {
         [SerializeField] private Transform _playerPrefab;
 
         private IHealth _health;
-        private CharacterAnimation _animation;
-        private NavMeshAgent _navMeshAgent;
-        private InventoryController _inventoryController;
         private StateMachine _stateMachine;
-        private Transform _playerTransform;
         private bool _canAttack;
+        public bool CanAttack => Vector3.Distance(Target.position, this.transform.position) <= NavMeshAgent.stoppingDistance && NavMeshAgent.velocity == Vector3.zero;
         public IMover Mover { get; private set; }
-
-        public bool CanAttack => Vector3.Distance(_playerTransform.position, this.transform.position) <= _navMeshAgent.stoppingDistance && _navMeshAgent.velocity == Vector3.zero;
+        public InventoryController Inventory { get; private set; }
+        public CharacterAnimation CharacterAnimation { get; private set; }
+        public NavMeshAgent NavMeshAgent { get; private set; }
+        public Transform Target { get; set; }
 
         private void Awake()
         {
-            _navMeshAgent = GetComponent<NavMeshAgent>();
-            Mover = new MoveWithNavMesh(this);
-            _animation = new CharacterAnimation(this);
             _health = GetComponent<IHealth>();
-            _inventoryController = GetComponent<InventoryController>();
             _stateMachine = new StateMachine();
+
+            Inventory = GetComponent<InventoryController>();
+            Mover = new MoveWithNavMesh(this);
+            CharacterAnimation = new CharacterAnimation(this);
+            NavMeshAgent = GetComponent<NavMeshAgent>();
         }
         private void Start()
         {
-            _playerTransform = FindObjectOfType<PlayerController>().transform;
- 
-            ChaseState chaseState = new ChaseState(this, _playerTransform);
-            AttackState attackState = new AttackState();
+            Target = FindObjectOfType<PlayerController>().transform;
+
+            ChaseState chaseState = new ChaseState(this);
+            AttackState attackState = new AttackState(this);
             DeadState deadState = new DeadState();
 
             _stateMachine.AddState(attackState, chaseState, () => !CanAttack);
             _stateMachine.AddState(chaseState, attackState, () => CanAttack);
             _stateMachine.AddAnyState(deadState, () => _health.IsDead);
-            
+
             _stateMachine.SetState(chaseState);
         }
         private void Update()
@@ -57,15 +57,11 @@ namespace TPSGame.Concretes.Controllers
         }
         private void FixedUpdate()
         {
-            if (_canAttack)
-            {
-                _inventoryController.CurrentWeapon.Attack();
-            }
+            _stateMachine.TickFixed();
         }
         private void LateUpdate()
         {
-            _animation.MoveAnimation(_navMeshAgent.velocity.magnitude);
-            _animation.AttackAnimation(_canAttack);
+            _stateMachine.TickLate();
         }
     }
 }

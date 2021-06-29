@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TPSGame.Abstracts.States;
 using UnityEngine;
@@ -16,6 +17,15 @@ namespace TPSGame.Concretes.States
             _currentState?.OnExit();
             _currentState = state;
             _currentState?.OnEnter();
+        }
+
+        public void TickFixed()
+        {
+            _currentState.TickFixed();
+        }
+
+        public void TickLate(){
+            _currentState.TickLate();
         }
 
         public void Tick()

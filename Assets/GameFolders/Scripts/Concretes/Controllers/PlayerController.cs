@@ -17,6 +17,7 @@ namespace TPSGame.Concretes.Controllers
         [SerializeField] private Transform _turnTransform;
 
         private IInputReader _input;
+        private IMover _mover;
         private IRotator _xRotator;
         private IRotator _yRotator;
         private CharacterAnimation _animation;
@@ -24,12 +25,11 @@ namespace TPSGame.Concretes.Controllers
         private Vector3 _direction;
 
         public Transform TurnTransform => _turnTransform;
-        public IMover Mover { get; private set; }
 
         private void Awake()
         {
             _input = GetComponent<IInputReader>();
-            Mover = new MoveWithCharacterController(this);
+            _mover = new MoveWithCharacterController(this);
             _animation = new CharacterAnimation(this);
             _inventory = GetComponent<InventoryController>();
 
@@ -57,7 +57,7 @@ namespace TPSGame.Concretes.Controllers
 
         private void FixedUpdate()
         {
-            Mover.MoveAction(_direction, _moveSpeed);
+            _mover.MoveAction(_direction, _moveSpeed);
         }
 
         private void LateUpdate()

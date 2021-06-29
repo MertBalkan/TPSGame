@@ -19,5 +19,15 @@ namespace TPSGame.Concretes.States
         {
             Debug.Log("Dead State Tick");
         }
+
+        public void TickFixed()
+        {
+            
+        }
+
+        public void TickLate()
+        {
+            
+        }
     }
 }

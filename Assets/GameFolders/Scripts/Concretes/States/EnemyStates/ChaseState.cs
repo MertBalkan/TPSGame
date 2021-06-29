@@ -6,13 +6,11 @@ namespace TPSGame.Concretes.States
 {
     public class ChaseState : IState
     {
-        private IEntityController _entityController;
-        private Transform _target;
+        private IEnemyController _enemyController;
         private float _moveSpeed = 10.0f;
-        public ChaseState(IEntityController entityController, Transform target)
+        public ChaseState(IEnemyController enemyController)
         {
-            _entityController = entityController;
-            _target = target;
+            _enemyController = enemyController;
         }
         public void OnEnter()
         {
@@ -26,7 +24,17 @@ namespace TPSGame.Concretes.States
 
         public void Tick()
         {
-            _entityController.Mover.MoveAction(_target.position, _moveSpeed);
+            _enemyController.Mover.MoveAction(_enemyController.Target.position, _moveSpeed);
+        }
+
+        public void TickFixed()
+        {
+            
+        }
+
+        public void TickLate()
+        {
+            _enemyController.CharacterAnimation.MoveAnimation(_enemyController.NavMeshAgent.velocity.magnitude);
         }
     }
 }
