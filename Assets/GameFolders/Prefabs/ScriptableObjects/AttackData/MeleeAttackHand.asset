@@ -18,5 +18,5 @@ MonoBehaviour:
   _layerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  _maxAttackDelay: 0.25
+  _maxAttackDelay: 0.8
   _animatorOverride: {fileID: 22100000, guid: ee14c7b56afad0444bce5504cc6acf31, type: 2}
