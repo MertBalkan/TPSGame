@@ -15,7 +15,6 @@ namespace TPSGame.Concretes.Controllers
     {
         [SerializeField] private Transform _playerPrefab;
 
-        private IMover _mover;
         private IHealth _health;
         private CharacterAnimation _animation;
         private NavMeshAgent _navMeshAgent;
@@ -23,13 +22,14 @@ namespace TPSGame.Concretes.Controllers
         private StateMachine _stateMachine;
         private Transform _playerTransform;
         private bool _canAttack;
+        public IMover Mover { get; private set; }
 
         public bool CanAttack => Vector3.Distance(_playerTransform.position, this.transform.position) <= _navMeshAgent.stoppingDistance && _navMeshAgent.velocity == Vector3.zero;
 
         private void Awake()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            _mover = new MoveWithNavMesh(this);
+            Mover = new MoveWithNavMesh(this);
             _animation = new CharacterAnimation(this);
             _health = GetComponent<IHealth>();
             _inventoryController = GetComponent<InventoryController>();
@@ -38,9 +38,9 @@ namespace TPSGame.Concretes.Controllers
         private void Start()
         {
             _playerTransform = FindObjectOfType<PlayerController>().transform;
-
+ 
+            ChaseState chaseState = new ChaseState(this, _playerTransform);
             AttackState attackState = new AttackState();
-            ChaseState chaseState = new ChaseState();
             DeadState deadState = new DeadState();
 
             _stateMachine.AddState(attackState, chaseState, () => !CanAttack);
@@ -52,7 +52,6 @@ namespace TPSGame.Concretes.Controllers
         private void Update()
         {
             if (_health.IsDead) return;
-            _mover.MoveAction(_playerTransform.position, 10f);
 
             _stateMachine.Tick();
         }
