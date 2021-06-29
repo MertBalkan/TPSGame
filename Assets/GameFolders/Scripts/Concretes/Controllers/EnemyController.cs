@@ -5,6 +5,7 @@ using TPSGame.Abstracts.Controllers;
 using TPSGame.Abstracts.Movements;
 using TPSGame.Concretes.Animations;
 using TPSGame.Concretes.Movements;
+using TPSGame.Concretes.States;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,8 +20,11 @@ namespace TPSGame.Concretes.Controllers
         private CharacterAnimation _animation;
         private NavMeshAgent _navMeshAgent;
         private InventoryController _inventoryController;
+        private StateMachine _stateMachine;
         private Transform _playerTransform;
         private bool _canAttack;
+
+        public bool CanAttack => Vector3.Distance(_playerTransform.position, this.transform.position) <= _navMeshAgent.stoppingDistance && _navMeshAgent.velocity == Vector3.zero;
 
         private void Awake()
         {
@@ -29,17 +33,28 @@ namespace TPSGame.Concretes.Controllers
             _animation = new CharacterAnimation(this);
             _health = GetComponent<IHealth>();
             _inventoryController = GetComponent<InventoryController>();
+            _stateMachine = new StateMachine();
         }
         private void Start()
         {
             _playerTransform = FindObjectOfType<PlayerController>().transform;
+
+            AttackState attackState = new AttackState();
+            ChaseState chaseState = new ChaseState();
+            DeadState deadState = new DeadState();
+
+            _stateMachine.AddState(attackState, chaseState, () => !CanAttack);
+            _stateMachine.AddState(chaseState, attackState, () => CanAttack);
+            _stateMachine.AddAnyState(deadState, () => _health.IsDead);
+            
+            _stateMachine.SetState(chaseState);
         }
         private void Update()
         {
             if (_health.IsDead) return;
             _mover.MoveAction(_playerTransform.position, 10f);
-            _canAttack = Vector3.Distance(_playerTransform.position, this.transform.position) <= _navMeshAgent.stoppingDistance && _navMeshAgent.velocity == Vector3.zero;
-            Debug.Log(_canAttack);
+
+            _stateMachine.Tick();
         }
         private void FixedUpdate()
         {
