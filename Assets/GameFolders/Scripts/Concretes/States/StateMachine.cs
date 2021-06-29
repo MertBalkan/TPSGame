@@ -1,18 +1,55 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TPSGame.Abstracts.States;
 using UnityEngine;
 
-public class StateMachine : MonoBehaviour
+namespace TPSGame.Concretes.States
 {
-    // Start is called before the first frame update
-    void Start()
+    public class StateMachine
     {
-        
-    }
+        private List<StateTransformer> _stateTransformers = new List<StateTransformer>();
+        private List<StateTransformer> _anyStateTransformers = new List<StateTransformer>();
+        private IState _currentState;
+        public void SetState(IState state)
+        {
+            if (_currentState == state) return;
+            _currentState?.OnExit();
+            _currentState = state;
+            _currentState?.OnEnter();
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Tick()
+        {
+            StateTransformer stateTransformer = CheckForTransformer();
+            if (stateTransformer != null)
+            {
+                SetState(stateTransformer.To);
+            }
+            _currentState.Tick();
+        }
+        private StateTransformer CheckForTransformer()
+        {
+            foreach (StateTransformer stateTransformer in _anyStateTransformers)
+            {
+                if (stateTransformer.Condition.Invoke())
+                    return stateTransformer;
+            }
+            foreach (StateTransformer stateTransformer in _stateTransformers)
+            {
+                if (stateTransformer.Condition.Invoke() && _currentState == stateTransformer.From)
+                    return stateTransformer;
+            }
+            return null;
+        }
+        public void AddState(IState from, IState to, System.Func<bool> condition)
+        {
+            StateTransformer stateTransformer = new StateTransformer(from, to, condition);
+            _stateTransformers.Add(stateTransformer);
+        }
+        public void AddAnyState(IState to, System.Func<bool> condition)
+        {
+            StateTransformer stateTransformer = new StateTransformer(to, null, condition);
+            _anyStateTransformers.Add(stateTransformer);
+        }
     }
 }
