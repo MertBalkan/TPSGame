@@ -25,7 +25,8 @@ namespace TPSGame.Concretes.States
 
         public void Tick()
         {
-            Debug.Log("Attack State Tick");
+            _enemyController.transform.LookAt(_enemyController.Target);
+            _enemyController.transform.eulerAngles = new Vector3(0.0f, _enemyController.transform.eulerAngles.y, 0.0f);
         }
 
         public void TickFixed()
