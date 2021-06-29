@@ -33,7 +33,7 @@ namespace TPSGame.Concretes.Controllers
             Inventory = GetComponent<InventoryController>();
             Mover = new MoveWithNavMesh(this);
             CharacterAnimation = new CharacterAnimation(this);
-            NavMeshAgent = GetComponent<NavMeshAgent>();
+            NavMeshAgent = GetComponent<NavMeshAgent>(); 
         }
         private void Start()
         {
@@ -41,7 +41,7 @@ namespace TPSGame.Concretes.Controllers
 
             ChaseState chaseState = new ChaseState(this);
             AttackState attackState = new AttackState(this);
-            DeadState deadState = new DeadState();
+            DeadState deadState = new DeadState(this);
 
             _stateMachine.AddState(attackState, chaseState, () => !CanAttack);
             _stateMachine.AddState(chaseState, attackState, () => CanAttack);
