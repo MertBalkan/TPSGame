@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TPSGame.Concretes.Managers;
 using TPSGame.Concretes.ScriptableObjects;
 using UnityEngine;
 
@@ -19,13 +20,16 @@ namespace TPSGame.Concretes.Controllers
         private void Update()
         {
             _currentTime += Time.deltaTime;
-            if(_currentTime > _maxTime) Spawn();
+            if (_currentTime > _maxTime && EnemyManager.Instance.CanSpawn) Spawn();
         }
         void Spawn()
         {
-            Instantiate(_spawnScriptableObject.EnemyPrefab,
+            EnemyController enemyController = Instantiate(_spawnScriptableObject.EnemyPrefab,
                         transform.position,
                         Quaternion.identity);
+
+            EnemyManager.Instance.AddEnemyController(enemyController);
+
             _currentTime = 0.0f;
             _maxTime = _spawnScriptableObject.RandomSpawnMaxTime;
         }

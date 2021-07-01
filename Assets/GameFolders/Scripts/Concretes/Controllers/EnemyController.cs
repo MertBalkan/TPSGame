@@ -5,6 +5,7 @@ using TPSGame.Abstracts.Controllers;
 using TPSGame.Abstracts.Movements;
 using TPSGame.Concretes.Animations;
 using TPSGame.Concretes.Combats;
+using TPSGame.Concretes.Managers;
 using TPSGame.Concretes.Movements;
 using TPSGame.Concretes.States;
 using UnityEngine;
@@ -65,6 +66,9 @@ namespace TPSGame.Concretes.Controllers
         private void LateUpdate()
         {
             _stateMachine.TickLate();
+        }
+        private void OnDestroy() {
+            EnemyManager.Instance.RemoveEnemyController(this);
         }
     }
 }
