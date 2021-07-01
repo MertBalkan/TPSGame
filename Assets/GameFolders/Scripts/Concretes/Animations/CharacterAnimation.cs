@@ -9,7 +9,7 @@ namespace TPSGame.Concretes.Animations
     public class CharacterAnimation
     {
         private Animator _animator;
-        
+
         public CharacterAnimation(IEntityController entity)
         {
             _animator = entity.transform.GetComponentInChildren<Animator>();
@@ -25,6 +25,11 @@ namespace TPSGame.Concretes.Animations
         public void AttackAnimation(bool canAttack)
         {
             _animator.SetBool("isAttack", canAttack);
+        }
+
+        public void DeadAnimation()
+        {
+            _animator.SetTrigger("die");
         }
 
     }

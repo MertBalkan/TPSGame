@@ -16,6 +16,9 @@ namespace TPSGame.Concretes.States
         public void OnEnter()
         {
             Debug.Log("Dead State enter");
+            _enemyController.Dead.DeadAction();
+            _enemyController.CharacterAnimation.DeadAnimation();
+            _enemyController.transform.GetComponent<CapsuleCollider>().enabled = false;
         }
 
         public void OnExit()
@@ -25,7 +28,7 @@ namespace TPSGame.Concretes.States
 
         public void Tick()
         {
-            GameObject.Destroy(_enemyController.transform.gameObject);
+
         }
 
         public void TickFixed()

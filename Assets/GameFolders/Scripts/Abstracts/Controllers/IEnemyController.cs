@@ -1,5 +1,6 @@
 ﻿using TPSGame.Abstracts.Movements;
 using TPSGame.Concretes.Animations;
+using TPSGame.Concretes.Combats;
 using TPSGame.Concretes.Controllers;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,6 +13,7 @@ namespace TPSGame.Abstracts.Controllers
         InventoryController Inventory { get; }
         CharacterAnimation CharacterAnimation { get; }
         NavMeshAgent NavMeshAgent { get; }
+        Dead Dead { get; }
         Transform Target { get; set; }
     }
 }

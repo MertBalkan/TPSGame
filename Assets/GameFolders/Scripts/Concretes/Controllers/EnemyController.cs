@@ -4,6 +4,7 @@ using TPSGame.Abstracts.Combats;
 using TPSGame.Abstracts.Controllers;
 using TPSGame.Abstracts.Movements;
 using TPSGame.Concretes.Animations;
+using TPSGame.Concretes.Combats;
 using TPSGame.Concretes.Movements;
 using TPSGame.Concretes.States;
 using UnityEngine;
@@ -25,6 +26,8 @@ namespace TPSGame.Concretes.Controllers
         public NavMeshAgent NavMeshAgent { get; private set; }
         public Transform Target { get; set; }
 
+        public Dead Dead { get; private set; }
+
         private void Awake()
         {
             _health = GetComponent<IHealth>();
@@ -33,7 +36,8 @@ namespace TPSGame.Concretes.Controllers
             Inventory = GetComponent<InventoryController>();
             Mover = new MoveWithNavMesh(this);
             CharacterAnimation = new CharacterAnimation(this);
-            NavMeshAgent = GetComponent<NavMeshAgent>(); 
+            NavMeshAgent = GetComponent<NavMeshAgent>();
+            Dead = GetComponent<Dead>();
         }
         private void Start()
         {

@@ -20,6 +20,7 @@ namespace TPSGame.Concretes.States
         public void OnExit()
         {
             Debug.Log("Chase State exit");
+            _enemyController.Mover.MoveAction(_enemyController.transform.position, 0.0f);
         }
 
         public void Tick()

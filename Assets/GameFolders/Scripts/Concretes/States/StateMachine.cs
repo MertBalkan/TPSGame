@@ -58,7 +58,7 @@ namespace TPSGame.Concretes.States
         }
         public void AddAnyState(IState to, System.Func<bool> condition)
         {
-            StateTransformer stateTransformer = new StateTransformer(to, null, condition);
+            StateTransformer stateTransformer = new StateTransformer(null, to, condition);
             _anyStateTransformers.Add(stateTransformer);
         }
     }
