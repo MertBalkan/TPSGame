@@ -14,6 +14,7 @@ namespace TPSGame.Concretes.Combats
         public bool IsDead => _currentHealth <= 0;
 
         public event System.Action<int, int> OnTakeHit;
+        public event System.Action OnDead;
 
         private void Awake()
         {
@@ -27,6 +28,7 @@ namespace TPSGame.Concretes.Combats
 
             _currentHealth -= damage;
             OnTakeHit?.Invoke(_currentHealth, _healthData.MaxHealth);
+            if(IsDead) OnDead?.Invoke();
         }
     }
 }
