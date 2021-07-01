@@ -47,15 +47,14 @@ namespace TPSGame.Concretes.Controllers
             AttackState attackState = new AttackState(this);
             DeadState deadState = new DeadState(this);
 
-            _stateMachine.AddState(attackState, chaseState, () => !CanAttack);
             _stateMachine.AddState(chaseState, attackState, () => CanAttack);
+            _stateMachine.AddState(attackState, chaseState, () => !CanAttack);
             _stateMachine.AddAnyState(deadState, () => _health.IsDead);
 
             _stateMachine.SetState(chaseState);
         }
         private void Update()
         {
-            if (_health.IsDead) return;
 
             _stateMachine.Tick();
         }
