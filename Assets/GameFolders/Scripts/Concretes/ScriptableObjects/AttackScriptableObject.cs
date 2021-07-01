@@ -11,7 +11,7 @@ namespace TPSGame.Concretes.ScriptableObjects
         Range, Melee
     }
 
-    [CreateAssetMenu(fileName = "Attack Data", menuName = "Attack Data")]
+    [CreateAssetMenu(fileName = "Combat/Attack Data", menuName = "Combat/Attack Data")]
     public class AttackScriptableObject : ScriptableObject
     {
         [SerializeField] private AttackTypeEnum _attackType;
