@@ -692,6 +692,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 700467758, guid: 77e01f8dd37ed4a4f91c2e10f77e77b2, type: 3}
+      propertyPath: m_text
+      value: 'Wave: 1'
+      objectReference: {fileID: 0}
+    - target: {fileID: 700467758, guid: 77e01f8dd37ed4a4f91c2e10f77e77b2, type: 3}
+      propertyPath: m_margin.x
+      value: -227.75795
+      objectReference: {fileID: 0}
+    - target: {fileID: 700467758, guid: 77e01f8dd37ed4a4f91c2e10f77e77b2, type: 3}
+      propertyPath: m_margin.z
+      value: -288.93222
+      objectReference: {fileID: 0}
+    - target: {fileID: 1396258236551166456, guid: 77e01f8dd37ed4a4f91c2e10f77e77b2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1396258236602054576, guid: 77e01f8dd37ed4a4f91c2e10f77e77b2,
         type: 3}
       propertyPath: m_Name

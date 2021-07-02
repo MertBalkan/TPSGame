@@ -162,8 +162,30 @@
                 },
                 {
                     "name": "",
+                    "id": "7aa43ffd-922c-4558-a008-6c6742404b0e",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "StickDeadzone,ScaleVector2(x=8,y=8)",
+                    "groups": "",
+                    "action": "Rotator",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2a464cb8-dd4d-4e89-a06c-4386b3be43d3",
                     "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a2b505e5-d18a-4f23-9296-092a313b9673",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -176,6 +198,17 @@
                     "id": "8fdcce66-9527-402d-b98d-cc9d1ecde6ec",
                     "path": "<Keyboard>/tab",
                     "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "428e7045-4366-4ad6-b556-0643c108285f",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "Tap(duration=0.1)",
                     "processors": "",
                     "groups": "",
                     "action": "Inventory",
