@@ -26,6 +26,7 @@ namespace TPSGame.Concretes.Managers
         public void RemoveEnemyController(EnemyController enemyController)
         {
             _enemies.Remove(enemyController);
+            GameManager.Instance.DecreaseWaveCount();
         }
     }
 }

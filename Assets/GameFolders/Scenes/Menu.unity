@@ -298,6 +298,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1720001723606488778, guid: 43d6ed3a4e1cc1549a36891a5c1cc307,
+        type: 3}
+      propertyPath: _waveMaxCount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3158296866964255247, guid: 43d6ed3a4e1cc1549a36891a5c1cc307,
         type: 3}
       propertyPath: m_Name

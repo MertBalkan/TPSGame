@@ -20,7 +20,7 @@ namespace TPSGame.Concretes.Controllers
         private void Update()
         {
             _currentTime += Time.deltaTime;
-            if (_currentTime > _maxTime && EnemyManager.Instance.CanSpawn) Spawn();
+            if (_currentTime > _maxTime && EnemyManager.Instance.CanSpawn && !GameManager.Instance.IsWaveFinished) Spawn();
         }
         void Spawn()
         {
