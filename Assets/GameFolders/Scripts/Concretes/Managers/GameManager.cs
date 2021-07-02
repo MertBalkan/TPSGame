@@ -8,15 +8,21 @@ namespace TPSGame.Concretes.Managers
 {
     public class GameManager : SingletonMonoBehaviour<GameManager>
     {
-        [SerializeField] private int _waveMaxCount = 100;
+        [SerializeField] private float _waveMultiple = 1.2f;
+        [SerializeField] private float _waitForNextLevel = 10.0f;
+        [SerializeField] private int _maxWaveBoundaryCount = 50;
 
-        public bool IsWaveFinished => _waveMaxCount <= 0;
+        private int _currentWaveMaxCount = 50;
+        public bool IsWaveFinished => _currentWaveMaxCount <= 0;
 
         private void Awake()
         {
             SingletonMethod(this);
         }
-
+        private void Start()
+        {
+            _currentWaveMaxCount = _maxWaveBoundaryCount;
+        }
         public void LoadLevel(string levelName)
         {
             StartCoroutine(LoadLevelAsync(levelName));
@@ -27,8 +33,20 @@ namespace TPSGame.Concretes.Managers
         }
         public void DecreaseWaveCount()
         {
-            if(IsWaveFinished) return;
-            _waveMaxCount--;
+            if (IsWaveFinished && EnemyManager.Instance.IsListEmpty)
+            {
+                StartCoroutine(StartNextWaveAsync());
+            }
+            else
+            {
+                _currentWaveMaxCount--;
+            }
+        }
+        private IEnumerator StartNextWaveAsync()
+        {
+            yield return new WaitForSeconds(_waitForNextLevel);
+            _maxWaveBoundaryCount = System.Convert.ToInt32(_maxWaveBoundaryCount * _waveMultiple);
+            _currentWaveMaxCount = _maxWaveBoundaryCount;
         }
     }
 }

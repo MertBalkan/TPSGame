@@ -10,9 +10,9 @@ namespace TPSGame.Concretes.Managers
     {
         [SerializeField] private int _maxEnemyCount = 50;
         [SerializeField] private List<EnemyController> _enemies;
+        public bool IsListEmpty => _enemies.Count <= 0;
 
         public bool CanSpawn => _maxEnemyCount > _enemies.Count;
-
         private void Awake()
         {
             SingletonMethod(this);
