@@ -12,10 +12,13 @@ namespace TPSGame.Concretes.Managers
         [SerializeField] private float _waitForNextLevel = 10.0f;
         [SerializeField] private int _maxWaveBoundaryCount = 50;
         [SerializeField] private int _waveLevel = 1;
+        [SerializeField] private int _playerCount = 0;
 
         private int _currentWaveMaxCount = 50;
         public event System.Action<int> OnNextWave;
         public bool IsWaveFinished => _currentWaveMaxCount <= 0;
+
+        public int PlayerCount => _playerCount;
 
         private void Awake()
         {
@@ -51,6 +54,10 @@ namespace TPSGame.Concretes.Managers
             _currentWaveMaxCount = _maxWaveBoundaryCount;
             _waveLevel++;
             OnNextWave?.Invoke(_waveLevel);
+        }
+        public void IncreasePlayerCount()
+        {
+            _playerCount++;
         }
     }
 }
