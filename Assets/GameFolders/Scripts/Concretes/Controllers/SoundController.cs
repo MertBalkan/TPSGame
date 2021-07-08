@@ -7,6 +7,7 @@ namespace TPSGame.Concretes.Controllers
     public class SoundController : MonoBehaviour
     {
         private AudioSource _audioSource;
+        public bool IsPlaying => _audioSource.isPlaying;
 
         private void Awake()
         {
@@ -20,6 +21,8 @@ namespace TPSGame.Concretes.Controllers
 
         public void PlaySound()
         {
+            if (_audioSource.isPlaying) return;
+
             _audioSource.Play();
         }
     }

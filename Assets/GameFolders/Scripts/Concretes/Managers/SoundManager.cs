@@ -8,9 +8,11 @@ namespace TPSGame.Concretes.Managers
 {
     public class SoundManager : SingletonMonoBehaviour<SoundManager>
     {
+        [SerializeField] private AudioClip _clip;
         [SerializeField] private AudioClip[] _clips;
         private SoundController[] _soundControllers;
 
+        public SoundController[] SoundControllers => _soundControllers;
 
         private void Awake()
         {
@@ -20,14 +22,18 @@ namespace TPSGame.Concretes.Managers
 
         private void Start()
         {
-            _soundControllers[0].SetClip(_clips[0]);
-            _soundControllers[1].SetClip(_clips[1]);
-
+            _soundControllers[0].SetClip(_clip);
             _soundControllers[0].PlaySound();
         }
 
-        public void PlayMachineGun(Vector3 position){
+        public void RangeAttackSound()
+        {
+            _soundControllers[1].PlaySound();
+        }
 
+        public void MeleeAttackSound()
+        {
+            _soundControllers[2].PlaySound();
         }
     }
 }

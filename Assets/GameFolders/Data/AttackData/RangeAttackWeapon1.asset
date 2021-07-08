@@ -20,3 +20,4 @@ MonoBehaviour:
     m_Bits: 4294967295
   _maxAttackDelay: 0.25
   _animatorOverride: {fileID: 22100000, guid: 155df3eac58c52c48a862977ce30e0f3, type: 2}
+  _clip: {fileID: 8300000, guid: 6e8977724d2410d46ac0e23d79554da9, type: 3}

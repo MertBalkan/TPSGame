@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using TPSGame.Abstracts.Combats;
+using TPSGame.Concretes.Managers;
 using TPSGame.Concretes.ScriptableObjects;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ namespace TPSGame.Concretes.Combats
         {
             _transformObject = transformObject;
             _attackScriptableObject = attackScriptableObject;
+            SoundManager.Instance.SoundControllers[2].SetClip(_attackScriptableObject.Clip);
         }
 
         public void AttackAction()
@@ -29,6 +31,7 @@ namespace TPSGame.Concretes.Combats
                 IHealth health = collider.GetComponent<IHealth>();
                 health?.TakeDamage(_attackScriptableObject.Damage);
             }
+            SoundManager.Instance.MeleeAttackSound();
         }
     }
 }

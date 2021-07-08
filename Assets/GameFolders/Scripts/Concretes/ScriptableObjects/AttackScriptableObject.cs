@@ -20,12 +20,16 @@ namespace TPSGame.Concretes.ScriptableObjects
         [SerializeField] private LayerMask _layerMask;
         [SerializeField] private float _maxAttackDelay = 0.25f;
         [SerializeField] private AnimatorOverrideController _animatorOverride;
+        [SerializeField] private AudioClip _clip;
 
         public float Distance => _distance;
         public int Damage => _damage;
         public LayerMask LayerMask => _layerMask;
         public float MaxAttackDelay => _maxAttackDelay;
         public AnimatorOverrideController AnimatorOverride => _animatorOverride;
+
+        public AudioClip Clip => _clip;
+
         public IAttackType GetAttackType(Transform transform)
         {
             if(_attackType == AttackTypeEnum.Range)
